@@ -35,7 +35,7 @@ class InventoryDB {
         return $result && $affectedRows != 0;
     }
 
-    function getColumns() : array {
+    public function getColumns() : array {
         return $this->columns;
     }
 
