@@ -5,7 +5,7 @@ use utils\DbTable;
 class InventoryDB {
     private $table;
     private $columns =
-        array("ID", "ProductID", "Description", "Quantity", "Image", "Price", "Sale");
+        array("ID", "ProductID", "Name", "Description", "Quantity", "Image", "Price", "Sale");
 
     function __construct(DbTable $table) {
         $this->table = $table;
@@ -26,6 +26,15 @@ class InventoryDB {
         return self::toProduct($result[0]);
     }
 
+    function buyProductById(int $productId, int $amount = 1) : bool {
+        $query = "UPDATE `" . $this->table->getTableName() .
+            "` SET Quantity = Quantity - $amount " .
+            "WHERE ProductID=$productId;";
+        $result = $this->table->query($query);
+        $affectedRows = $this->table->getConnection()->affected_rows;
+        return $result && $affectedRows != 0;
+    }
+
     function getColumns() : array {
         return $this->columns;
     }
@@ -34,6 +43,7 @@ class InventoryDB {
         return new Product(
             $array["ID"],
             $array["ProductID"],
+            $array["Name"],
             $array["Description"],
             $array["Quantity"],
             $array["Image"],

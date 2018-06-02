@@ -4,7 +4,26 @@ require __DIR__ . "/../vendor/autoload.php";
 
 
 use utils\Communication;
-use utils\Error;
+use utils\exceptions\ArgumentException;
+use utils\exceptions\Error;
+
+function errorHandler($code, $msg, $file, $line) {
+    Communication::error(Error::$GENERAL_ERROR, "$file:$line ($code) $msg");
+}
+
+function shutdownHandler() {
+    $lastError = error_get_last();
+    if($lastError["type"] === E_ERROR) {
+        errorHandler(E_ERROR, $lastError["message"], $lastError["file"], $lastError["line"]);
+    }
+    //ob_clean();
+    $json = Communication::toJsonString();
+    echo $json;
+}
+
+set_error_handler("api\\errorHandler");
+register_shutdown_function("api\\shutdownHandler");
+
 
 (new Api())->handleRequest();
 
@@ -13,6 +32,7 @@ class Api {
         "info" => ["api\\Api", "test"],
         "getAll" => ["inventory\InventoryApi", "getAll"],
         "get" => ["inventory\InventoryApi", "get"],
+        "buy" => ["inventory\InventoryApi", "buy"],
     );
 
     static function test() {
@@ -46,7 +66,7 @@ class Api {
             Communication::error(Error::$GENERAL_ERROR, $ex);
         } finally {
             $json = Communication::toJsonString();
-            echo $json;
+            //echo $json;
         }
     }
 
@@ -80,7 +100,10 @@ class Api {
      */
     function getArgs() : array {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            return $_POST;
+            $args = json_decode(file_get_contents("php://input"), true);
+            if($args == null)
+                throw new ArgumentException("No arguments where sent");
+            return $args;
         }
         return $_GET;
     }

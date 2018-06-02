@@ -4,17 +4,19 @@ namespace inventory;
 class Product {
     private $id;
     private $productId;
+    private $name;
     private $description;
     private $quantity;
     private $image;
     private $price;
     private $sale;
 
-    function __construct(int $id, int $productId, string $description, int $quantity = 0,
+    function __construct(int $id, int $productId, string $name, string $description, int $quantity = 0,
         ?string $image = null, int $price = 0, int $sale = 100) {
 
         $this->id = $id;
         $this->productId = $productId;
+        $this->name = $name;
         $this->description = $description;
         $this->quantity = $quantity;
         $this->image = $image;
@@ -40,6 +42,16 @@ class Product {
     public function getProductId()
     {
         return $this->productId;
+    }
+
+    /**
+     * Getter for name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -105,6 +117,7 @@ class Product {
         return array(
             "id" => $this->getId(),
             "productId" => $this->getProductId(),
+            "name" => $this->getName(),
             "description" => $this->getDescription(),
             "quantity" => $this->getQuantity(),
             "image" => $this->getImage(),

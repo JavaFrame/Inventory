@@ -1,5 +1,5 @@
 <?php
-namespace utils;
+namespace utils\exceptions;
 
 /**
  * Class: Error
@@ -15,5 +15,21 @@ class Error {
      * @var int = 1
      */
     static $GENERAL_ERROR = 1;
+
+    /**
+     * WRONG_FIELDS
+     * The wrong fields where sent in a request
+     *
+     * @var int = 2
+     */
+    static $WRONG_FIELDS = 2;
+
+    /**
+     * ARGUMENT_EXCEPTION
+     * Either the wrong arguments were sent or they were sent in the wrong format
+     *
+     * @var int = 3
+     */
+    static $ARGUMENT_EXCEPTION = 3;
 }
 

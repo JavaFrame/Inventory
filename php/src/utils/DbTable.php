@@ -46,6 +46,16 @@ class DbTable {
         return $this->table;
     }
 
+    /**
+     * Getter for connection
+     *
+     * @return string
+     */
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
     private static $instance = null;
     /**
      * getInstance

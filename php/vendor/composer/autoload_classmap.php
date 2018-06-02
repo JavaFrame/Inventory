@@ -13,5 +13,7 @@ return array(
     'utils\\Communication' => $baseDir . '/src/utils/Communication.php',
     'utils\\Config' => $baseDir . '/src/utils/Config.php',
     'utils\\DbTable' => $baseDir . '/src/utils/DbTable.php',
-    'utils\\Error' => $baseDir . '/src/utils/Error.php',
+    'utils\\exceptions\\ArgumentException' => $baseDir . '/src/utils/exceptions/ArgumentException.php',
+    'utils\\exceptions\\Error' => $baseDir . '/src/utils/exceptions/Error.php',
+    'utils\\exceptions\\InventoryException' => $baseDir . '/src/utils/exceptions/InventoryException.php',
 );
