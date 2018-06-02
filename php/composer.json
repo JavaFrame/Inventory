@@ -1,0 +1,16 @@
+{
+    "name": "bbw/inventory",
+    "require": {
+        "monolog/monolog": "^1.23",
+        "nilportugues/sql-query-builder": "^1.5"
+    },
+    "authors": [
+        {
+            "name": "sebi",
+            "email": "sebastian.zumbrunn@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}

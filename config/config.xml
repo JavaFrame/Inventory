@@ -1,0 +1,10 @@
+<config>
+    <db>
+        <host>localhost</host>
+        <port>3306</port>
+        <username>dev</username>
+        <pw>1111</pw>
+        <db>inventory</db>
+        <table>inventory</table>
+    </db>
+</config>
