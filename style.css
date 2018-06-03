@@ -1,0 +1,38 @@
+/* colors: #90AFC5 ; #336B87 ; #2A3132 ; #763626*/
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+    font-family: Lato, sans-serif;
+}
+
+/* scanner */
+
+/* total bottom box*/
+#totalBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 50px;
+
+    background-color: #336B87;
+}
+
+#total {
+    text-align: right;
+    height: 100%;
+}
+
+#totalSpan {
+    display: inline-block;
+    margin: 10px;
+
+    font-size: 20px;
+}
+
+#debugger1, #debugger2 {
+    border: black solid 1px;
+}
+
+

@@ -16,4 +16,5 @@ return array(
     'utils\\exceptions\\ArgumentException' => $baseDir . '/src/utils/exceptions/ArgumentException.php',
     'utils\\exceptions\\Error' => $baseDir . '/src/utils/exceptions/Error.php',
     'utils\\exceptions\\InventoryException' => $baseDir . '/src/utils/exceptions/InventoryException.php',
+    'utils\\exceptions\\ItemNotFoundException' => $baseDir . '/src/utils/exceptions/ItemNotFoundException.php',
 );

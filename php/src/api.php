@@ -6,6 +6,7 @@ require __DIR__ . "/../vendor/autoload.php";
 use utils\Communication;
 use utils\exceptions\ArgumentException;
 use utils\exceptions\Error;
+use utils\exceptions\InventoryException;
 
 function errorHandler($code, $msg, $file, $line) {
     Communication::error(Error::$GENERAL_ERROR, "$file:$line ($code) $msg");
@@ -16,7 +17,7 @@ function shutdownHandler() {
     if($lastError["type"] === E_ERROR) {
         errorHandler(E_ERROR, $lastError["message"], $lastError["file"], $lastError["line"]);
     }
-    //ob_clean();
+    ob_clean();
     $json = Communication::toJsonString();
     echo $json;
 }
@@ -63,7 +64,11 @@ class Api {
 
             call_user_func_array($node, $args);
         } catch(\Exception $ex) {
-            Communication::error(Error::$GENERAL_ERROR, $ex);
+            if($ex instanceof InventoryException) {
+                Communication::error($ex->getErrorCode(), $ex->getMsg(), (string) $ex);
+            } else {
+                Communication::error(Error::$GENERAL_ERROR, $ex->getMessage, $ex);
+            }
         } finally {
             $json = Communication::toJsonString();
             //echo $json;

@@ -16,8 +16,9 @@ class Communication {
      * @param int $errorCode the error code of the  error
      * @param string $errorMsg the message of the error
      */
-    static function error(int $errorCode, string $errorMsg) {
-        self::$error[] = array("type" => "error", "code" => $errorCode, "msg" => $errorMsg);
+    static function error(int $errorCode, string $errorMsg, string $ex = null) {
+        self::$error = array("type" => "error", "code" => $errorCode, "msg" => $errorMsg,
+            "ex" => $ex);
     }
 
     /**
@@ -26,7 +27,7 @@ class Communication {
      * @param mixed $data the data content which should be sent
      */
     static function data($data) {
-        self::$data[] = array("type" => "data", "data" => $data);
+        self::$data = array("type" => "data", "data" => $data);
     }
 
     /**
@@ -34,8 +35,8 @@ class Communication {
      * generates a json string from the recorded data and error entries
      */
     static function toJsonString() : string {
-        if(count(self::$data) == 0)
-            self::data(array());
-        return json_encode(array_merge(self::$data, self::$error));
+        if(self::$error != null)
+            return json_encode(self::$error);
+        return json_encode(self::$data);
     }
 }

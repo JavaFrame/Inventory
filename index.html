@@ -4,13 +4,23 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Index</title>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="js/lib/require.js" data-main="js/src/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
         <div id="app">
-            {{ message }}
+            <div id="camera">
+            </div>
+            <img id="camImg" v-bind:src="camImg">
+            <p>{{barcode}}</p>
+            <button v-on:click="readBarcode">read barcode</button>
+ <!--           <div id="totalBox">
+                <div id="total">
+                    <span id="totalSpan">{{total}} Fr</span>
+                </div>
+ </div>-->
         </div>
-
-        <script src="js/src/main.js"></script>
+        <canvas id="debugger1"></canvas>
+        <canvas id="debugger2"></canvas>
     </body>
 </html>

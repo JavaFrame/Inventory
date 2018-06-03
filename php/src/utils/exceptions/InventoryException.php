@@ -7,7 +7,7 @@ class InventoryException extends \Exception {
 
     function __construct(int $errorCode, string $msg, \Throable $previous = null) {
         parent::__construct("($errorCode) $msg", $previous);
-        $this->$errorCode = $errorCode;
+        $this->errorCode = $errorCode;
         $this->realMsg = $msg;
     }
 
@@ -16,7 +16,7 @@ class InventoryException extends \Exception {
      *
      * @return string
      */
-    public function getErrorCode()
+    public function getErrorCode() : int
     {
         return $this->errorCode;
     }

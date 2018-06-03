@@ -31,5 +31,13 @@ class Error {
      * @var int = 3
      */
     static $ARGUMENT_EXCEPTION = 3;
+
+    /**
+     * ITEM_NOT_FOUND
+     * An item wasn't found in the db
+     *
+     * @var int
+     */
+    static $ITEM_NOT_FOUND = 4;
 }
 

@@ -2,6 +2,7 @@
 namespace inventory;
 use utils\Communication;
 use utils\exceptions\Error;
+use utils\exceptions\ItemNotFoundException;
 
 class InventoryApi {
     static function getAll(int $offset, int $limit) {
@@ -14,6 +15,8 @@ class InventoryApi {
 
     static function get(int $productId) {
         $result = InventoryDB::getInstance()->getByProductId($productId);
+        if($result == null)
+            throw new ItemNotFoundException($productId);
         Communication::data($result->toArray());
     }
 
