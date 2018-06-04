@@ -2,6 +2,9 @@ define(new class {
     readBarcode(dataArray) {
         let line = this.grayscaleImg(dataArray);
         console.log(line)
+        let countedLines = this.getCountedLines(line);
+        let start = this.findMark(countedLines);
+        console.log(start);
     }
 
     readFromCanvas(canvas, y = -1) {
@@ -43,6 +46,50 @@ define(new class {
             counter++;
         }
         return line;
+    }
+
+    getCountedLines(lineData) {
+        let result = [];
+        let lastLineSize = 0;
+        let lastLine = false;
+        lineData.forEach(function(l) {
+            if(lastLine != l) {
+                if(!lastLine)
+                    lastLineSize = -lastLineSize;
+                result.push(lastLineSize);
+                lastLineSize = 0;
+            }
+            lastLine = l;
+            lastLineSize++;
+        });
+        console.log(result);
+        return result;
+    }
+
+    findMark(countedLineData, start = 0, minBlock = 2, anomaly = 1) {
+        let initCount = Math.abs(countedLineData[start]);
+        let successCount = 0;
+        let startPos = 0;
+        for(let i = start + 1; i < countedLineData.length; i++) {
+            let line = countedLineData[i];
+            let diff = Math.abs(Math.abs(initCount) - Math.abs(line));
+            console.log("diff: ", diff, " anomaly: ", anomaly);
+            if(diff > anomaly) {
+                initCount = line;
+                successCount = 0;
+                startPos = i;
+            } else {
+                successCount++;
+                if(successCount >= 3) {
+                    return startPos;
+                }
+            }
+        }
+        return -1;
+    }
+
+    floorLine(line) {
+
     }
 
     drawDebug(canvas) {
