@@ -34,7 +34,7 @@ class Communication {
      * toJsonString
      * generates a json string from the recorded data and error entries
      */
-    static function toJsonString() : string {
+    static function toJsonString()  {
         if(self::$error != null)
             return json_encode(self::$error);
         return json_encode(self::$data);

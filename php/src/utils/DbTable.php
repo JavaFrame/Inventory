@@ -27,7 +27,7 @@ class DbTable {
         $this->connection = new \mysqli($host, $username, $pw, $db, $port);
     }
 
-    function querySelect(string $selectQuery) : ?array {
+    function querySelect(string $selectQuery) {
         $result = self::query($selectQuery);
         if($result == false) return array();
 
@@ -38,11 +38,11 @@ class DbTable {
         return $this->connection->query($query);
     }
 
-    function getDbName() : string {
+    function getDbName() {
         return $this->db;
     }
 
-    function getTableName() : string  {
+    function getTableName() {
         return $this->table;
     }
 
@@ -65,7 +65,7 @@ class DbTable {
      * on the first call and after that returns the same instance
      *
      */
-    static function getInstance() : DbTable {
+    static function getInstance() {
         if(self::$instance == null) {
             $config = Config::getXml();
             $host = (string) $config->db->host;

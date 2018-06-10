@@ -21,7 +21,7 @@ class Config {
      * The returned SimpleXmlElement is lazy evaluated and only instanced on the first call
      * to this function. All proceeding calls return the same object
      */
-    static function getXml() : \SimpleXmlElement {
+    static function getXml() {
         if(self::$xmlConfig == null)
             self::$xmlConfig = new \SimpleXmlElement(file_get_contents(Config::CONFIG_PATH));
         return self::$xmlConfig;

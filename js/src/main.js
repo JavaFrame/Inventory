@@ -1,47 +1,61 @@
-requirejs.config({
-    baseUrl: "js/src/",
-    paths: {
-        "vue": "../lib/vue",
-        "webcam" : "../lib/webcam.min",
-        "barcode": "../lib/JOB/BarcodeReader"
+var app = new Vue({
+    el: "#app",
+    data: {
+        cart: {},
+        camImg: null,
+        barcode: "",
+        decoder: null,
+        showDetailedView: false,
+        detailedItem: undefined,
+    },
+    methods: {
+        addItem: function(code) {
+            Api.getItem(code).then(item => {
+                let id = "#" + item.productId;
+                if(this.cart[id] == undefined) {
+                    Vue.set(this.cart, id, {
+                        item: item,
+                        quantity: 0,
+                    });
+                }
+                this.cart[id].quantity++;
+            });
+
+        },
+        showDetails: function(productId) {
+            let id = "#" + productId;
+            let item = this.cart[id];
+            if(item == null) return;
+            this.detailedItem = item;
+            this.showDetailedView = true;
+        },
+        hideDetails: function() {
+            this.showDetailedView = false;
+        },
+        deleteItem: function(productId) {
+            Vue.delete(this.cart, "#" + productId);
+        },
+        checkOut: function() {
+            Api.buyItems(
+                Object.values(this.cart).map(item => {
+                    return {
+                        id: item.item.productId,
+                        amount: item.quantity
+                    }
+                })
+            ).then(() => {
+                this.cart = {}
+            });
+        }
+    },
+    computed: {
+        totalPrice: function() {
+            return Object.values(this.cart).reduce((acc, item) => acc + item.item.price * item.quantity, 0) / 100;
+        }
+    },
+    mounted: function() {
+
     }
 })
-require(["vue",  "api/Api", "webcam", "barcode"],
-    function(Vue, Api, Webcam, Barcode) {
-        var app = new Vue({
-            el: "#app",
-            data: {
-                cart: [],
-                total: 0,
-                camImg: null,
-                barcode: ""
-            },
-            methods: {
-    /*            readBarcode: function() {
-                    let that = this;
-                    Webcam.snap(function(data, canvas) {
-                        that.barcode = Barcode.readFromCanvas(canvas);
-                    })
-    */
-                readBarcode: function() {
 
-                }
-            }
-        })
 
-        //init webcam
-        Webcam.set({
-            width: 720,
-            height: 240,
-            image_format: "jpeg",
-            jpeg_quality: 90,
-            fps: 15
-        })
-        Webcam.attach("#camera");
-        Barcode.Init();
-        Barcode.SetStreamCallback(function(result) {
-            console.log(result);
-        })
-        Webcam.on("live", function() {
-        })
-    });

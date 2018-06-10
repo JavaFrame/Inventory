@@ -67,7 +67,7 @@ class Api {
             if($ex instanceof InventoryException) {
                 Communication::error($ex->getErrorCode(), $ex->getMsg(), (string) $ex);
             } else {
-                Communication::error(Error::$GENERAL_ERROR, $ex->getMessage, $ex);
+                Communication::error(Error::$GENERAL_ERROR, $ex->getMessage(), $ex);
             }
         } finally {
             $json = Communication::toJsonString();
@@ -83,7 +83,7 @@ class Api {
      *
      * @return string returns a the request path as string
      */
-    function getApiRequest() : string{
+    function getApiRequest() {
         $requestUri = $_SERVER["REQUEST_URI"];
         $fileName = basename(__FILE__);
         $cmdPos = strpos($requestUri, $fileName) + strlen($fileName);
@@ -103,7 +103,7 @@ class Api {
      * Returns the either the post or the get arguments depending on the REQUEST_METHOD.
      *
      */
-    function getArgs() : array {
+    function getArgs() {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $args = json_decode(file_get_contents("php://input"), true);
             if($args == null)

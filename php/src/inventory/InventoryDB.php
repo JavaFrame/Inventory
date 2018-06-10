@@ -11,7 +11,7 @@ class InventoryDB {
         $this->table = $table;
     }
 
-    function getAll(int $offset, int $count) : array {
+    function getAll(int $offset, int $count) {
         $query = "SELECT * FROM `" . $this->table->getTableName() . "` LIMIT $offset, $count;";
         $result = $this->table->querySelect($query);
         return array_map(function($row) {
@@ -19,14 +19,14 @@ class InventoryDB {
         }, $result);
     }
 
-    function getByProductId(int $productId) : ?Product {
+    function getByProductId(int $productId) {
         $query = "SELECT * FROM `" . $this->table->getTableName() . "` WHERE ProductID=$productId;";
         $result = $this->table->querySelect($query);
         if(count($result) == 0) return null;
         return self::toProduct($result[0]);
     }
 
-    function buyProductById(int $productId, int $amount = 1) : bool {
+    function buyProductById(int $productId, int $amount = 1) {
         $query = "UPDATE `" . $this->table->getTableName() .
             "` SET Quantity = Quantity - $amount " .
             "WHERE ProductID=$productId;";
@@ -39,7 +39,7 @@ class InventoryDB {
         return $this->columns;
     }
 
-    private static function toProduct(array $array) : Product {
+    private static function toProduct(array $array) {
         return new Product(
             $array["ID"],
             $array["ProductID"],
@@ -53,7 +53,7 @@ class InventoryDB {
     }
 
     private static $instance;
-    public static function getInstance() : InventoryDB {
+    public static function getInstance() {
         if(self::$instance == null) {
             self::$instance = new InventoryDB(DbTable::getInstance());
         }

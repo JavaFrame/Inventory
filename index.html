@@ -4,23 +4,45 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Index</title>
-        <script src="js/lib/require.js" data-main="js/src/main.js"></script>
+        <script src="js/lib/vue.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css"/>
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+            crossorigin="anonymous">
     </head>
     <body>
         <div id="app">
-            <div id="camera">
+            <detailed-view
+                v-show="showDetailedView"
+                :item="detailedItem"
+                @close-dv="hideDetails">
+            </detailed-view>
+            <camera @code-recognized="addItem"></camera>
+            <div v-for="item in cart">
+                <cart-item
+                    v-bind:item="item"
+                    @show-detailed-view="showDetails(item.item.productId)"
+                    @delete-item="deleteItem">
+                </cart-item>
             </div>
-            <img id="camImg" v-bind:src="camImg">
-            <p>{{barcode}}</p>
-            <button v-on:click="readBarcode">read barcode</button>
- <!--           <div id="totalBox">
-                <div id="total">
-                    <span id="totalSpan">{{total}} Fr</span>
-                </div>
- </div>-->
+            <div id="totalBox">
+                <button id="checkout-btn"
+                        class="btn btn-primary"
+                        v-bind:disabled="Object.keys(cart).length <= 0"
+                        @click="checkOut">
+                    Check Out
+                </button>
+                <span id="totalSpan">{{totalPrice}} Fr</span>
+            </div>
         </div>
-        <canvas id="debugger1"></canvas>
-        <canvas id="debugger2"></canvas>
+        <script src="js/lib/qrcodelib.js"></script>
+        <script src="js/lib/webcodecamjs.js"></script>
+        <script src="js/src/api/Api.js"></script>
+        <script src="js/src/components/camera.js"></script>
+        <script src="js/src/components/cartItem.js"></script>
+        <script src="js/src/components/detailedView.js"></script>
+        <script src="js/src/main.js"></script>
     </body>
 </html>

@@ -16,7 +16,7 @@ class InventoryException extends \Exception {
      *
      * @return string
      */
-    public function getErrorCode() : int
+    public function getErrorCode()
     {
         return $this->errorCode;
     }

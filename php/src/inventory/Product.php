@@ -6,6 +6,11 @@ class Product {
     private $productId;
     private $name;
     private $description;
+    /**
+     * quantity
+     *
+     * @var mixed
+     */
     private $quantity;
     private $image;
     private $price;
@@ -113,7 +118,7 @@ class Product {
         return self::getPrice() * self::getSale();
     }
 
-    function toArray() : array {
+    function toArray()  {
         return array(
             "id" => $this->getId(),
             "productId" => $this->getProductId(),

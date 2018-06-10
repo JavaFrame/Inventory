@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="19in"
+   height="21in"
+   viewBox="0 0 1710 1890"
+   id="svg5040"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="triangle_down.svg">
+  <defs
+     id="defs5042" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.087500001"
+     inkscape:cx="2505.5155"
+     inkscape:cy="-2077.6233"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1916"
+     inkscape:window-height="1031"
+     inkscape:window-x="1920"
+     inkscape:window-y="47"
+     inkscape:window-maximized="0"
+     units="in"
+     width="19in" />
+  <metadata
+     id="metadata5045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,837.63779)">
+    <path
+       transform="matrix(-74.211635,0,0,-94.712444,17493.503,50553.662)"
+       inkscape:transform-center-y="226.98796"
+       d="m 224.24088,522.64832 5.74182,9.94514 5.74183,9.94514 -11.48365,0 -11.48366,0 5.74183,-9.94514 z"
+       inkscape:randomized="0"
+       inkscape:rounded="0"
+       inkscape:flatsided="false"
+       sodipodi:arg2="-0.52359878"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:r2="6.6300936"
+       sodipodi:r1="13.260187"
+       sodipodi:cy="535.90851"
+       sodipodi:cx="224.24088"
+       sodipodi:sides="3"
+       id="path4811"
+       style="fill:#006680;fill-opacity:0.72072072;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:type="star"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:transform-center-x="7.4331925e-05" />
+  </g>
+</svg>
